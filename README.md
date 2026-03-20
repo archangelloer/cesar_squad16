@@ -1,12 +1,29 @@
-# Projeto MVP - Squad 16
+# 🚀 Projetos - Squad 16
 
-Este repositório contém os artefatos do projeto desenvolvido pelo Squad 16, com foco na criação de uma plataforma educacional baseada em IA para geração de questões e feedback em tempo real.
+Este repositório contém os artefatos desenvolvidos pelo Squad 16 ao longo do semestre. As entregas englobam diferentes desafios e soluções tecnológicas propostas nas disciplinas do nosso curso.
+
+## 👥 Membros da Equipe
+* [Andrews Queiroz](https://github.com/4ndrewss)
+* [Arthur Ferreira](https://github.com/ArchangelLoer)
+* Diogo Silas
+* Eduardo Borges
+* Eliziane Mota
 
 ---
 
-## Entrega 01
+## 🏟️ Entrega 01 (Versão Arena Pernambuco) - Foco Atual
 
-Nesta primeira entrega, definimos as regras de negócio através de Histórias de Usuário utilizando o formato BDD e construímos o protótipo de baixa fidelidade (Lo-Fi) mapeando a jornada principal do MVP.
+Neste novo ciclo, o Squad 16 mudou o escopo para focar na resolução de um problema de infraestrutura pública (iniciando uma nova "Entrega 01" para este desafio). O objetivo é desenvolver uma aplicação web para conectar pessoas interessadas em eventos com a programação da Arena Pernambuco, otimizando o uso do espaço.
+
+### 📌 Gestão Ágil e Organização
+O acompanhamento das tarefas, divisão do time e backlogs estão sendo gerenciados via Trello.
+* 📋 **Acesso ao Quadro:** [Acessar Trello do Squad 16](https://trello.com/b/svXcgUeL/trellosquad16)
+
+---
+
+## 🤖 Entrega 01: MVP Aibox (Projeto Anterior)
+
+Nesta primeira entrega da frente de inovação, definimos as regras de negócio e o escopo para a criação de uma plataforma educacional baseada em IA para geração de questões e feedback em tempo real.
 
 ### 📚 Histórias de Usuário (BDD)
 Foram definidas 7 histórias de usuário abordando o ecossistema da plataforma (Visão do Professor, Aluno, Administrador, Coordenador e Responsáveis).
