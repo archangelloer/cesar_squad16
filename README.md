@@ -19,6 +19,10 @@ Neste novo ciclo, o Squad 16 mudou o escopo para focar na resolução de um prob
 O acompanhamento das tarefas, divisão do time e backlogs estão sendo gerenciados via Trello.
 * 📋 **Acesso ao Quadro:** [Acessar Trello do Squad 16](https://trello.com/b/svXcgUeL/trellosquad16)
 
+
+### 📚 Histórias de Usuário (BDD)
+Foram definidas as histórias principais focadas nas personas do Cidadão (que busca eventos) e do Administrador (que gerencia o espaço).
+* 📄 *Documento de Histórias:* [Acessar PDF](docs/Histórias_de_Usuário_CESAR-Squad16.pdf)
 ---
 
 ## 🤖 Entrega 01: MVP Aibox (Projeto Anterior)
