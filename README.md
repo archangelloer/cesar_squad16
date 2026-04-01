@@ -6,7 +6,7 @@ Este repositório contém os artefatos desenvolvidos pelo Squad 16 ao longo do s
 * [Andrews Queiroz](https://github.com/4ndrewss)
 * [Arthur Ferreira](https://github.com/ArchangelLoer)
 * Diogo Silas
-* Eduardo Borges
+* [Eduardo Borges](https://github.com/Eduardo-Borges18)
 * Eliziane Mota
 
 ---
