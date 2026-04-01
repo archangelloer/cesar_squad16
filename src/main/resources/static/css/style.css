@@ -1,0 +1,163 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f7f6;
+    color: #333;
+}
+
+/* cabeçalho */
+header {
+    background-color: #1a237e; /* Azul escuro */
+    color: white;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+header nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+header nav a:hover {
+    text-decoration: underline;
+}
+
+/* area principal e titulo */
+main {
+    padding: 40px 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page-title {
+    text-align: center;
+    color: #1a237e;
+    margin-bottom: 10px;
+    font-size: 2.5rem;
+}
+
+.page-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+/* filtros */
+.filtros {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.btn-filtro {
+    padding: 10px 20px;
+    border: 2px solid #1a237e;
+    background-color: transparent;
+    color: #1a237e;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-filtro:hover, .btn-filtro.ativo {
+    background-color: #1a237e;
+    color: white;
+}
+
+/* colunas */
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+/* cards de evento */
+.event-card {
+    background-color: white;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    padding: 25px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.event-categoria {
+    display: inline-block;
+    background-color: #e3f2fd;
+    color: #1565c0;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.event-title {
+    font-size: 1.4rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.event-date {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+/* botoes de açao no card */
+.btn-reservar {
+    display: block;
+    text-align: center;
+    background-color: #4caf50;
+    color: white;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-reservar:hover {
+    background-color: #45a049;
+}
+
+.btn-esgotado {
+    display: block;
+    text-align: center;
+    background-color: #9e9e9e;
+    color: white;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: not-allowed;
+}
+
+/* estado vazio */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #666;
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arena Pernambuco - Ingressos</title>
+    
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <header>
+        <h2>Arena Pernambuco</h2>
+        <nav>
+            <a href="/meus-ingressos">Meus Ingressos</a>
+            <a href="/admin/login">Área do Administrador</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="page-title">Programação da Arena</h1>
+        <p class="page-subtitle">Confira nossos próximos eventos e garanta seu ingresso!</p>
+
+        <div class="filtros">
+            <button class="btn-filtro ativo">Todos</button>
+            <button class="btn-filtro">Esportes</button>
+            <button class="btn-filtro">Shows</button>
+            <button class="btn-filtro">Cultura</button>
+        </div>
+
+        <div th:if="${#lists.isEmpty(eventos)}" class="empty-state">
+            <h3>Nenhum evento programado para os próximos dias.</h3>
+            <p>Estamos preparando novidades! Volte em breve.</p>
+        </div>
+
+        <div th:unless="${#lists.isEmpty(eventos)}" class="event-grid">
+            
+            <div class="event-card" th:each="evento : ${eventos}">
+                
+                <div>
+                    <span class="event-categoria" th:text="${evento.categoria}">Esporte</span>
+                    
+                    <h3 class="event-title" th:text="${evento.nome}">Jogo: Náutico x Sport</h3>
+                    <p class="event-date">📅 <span th:text="${#temporals.format(evento.data, 'dd/MM/yyyy HH:mm')}">15/05/2026 16:00</span></p>
+                </div>
+
+                <div>
+                    <a th:if="${evento.capacidadeDisponivel > 0}" 
+                    th:href="@{/eventos/{id}/reservar(id=${evento.id})}" 
+                    class="btn-reservar">
+                    Simular Reserva
+                    </a>
+
+                    <div th:unless="${evento.capacidadeDisponivel > 0}" class="btn-esgotado">
+                    Esgotado
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>
