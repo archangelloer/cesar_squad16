@@ -22,10 +22,11 @@
         <p class="page-subtitle">Confira nossos próximos eventos e garanta seu ingresso!</p>
 
         <div class="filtros">
-            <button class="btn-filtro ativo">Todos</button>
-            <button class="btn-filtro">Esportes</button>
-            <button class="btn-filtro">Shows</button>
-            <button class="btn-filtro">Cultura</button>
+            <button class="btn-filtro ativo" onclick="filtrarEventos('Todos', this)">Todos</button>
+            <button class="btn-filtro" onclick="filtrarEventos('Esporte', this)">Esportes</button>
+            <button class="btn-filtro" onclick="filtrarEventos('Shows', this)">Shows</button>
+            <button class="btn-filtro" onclick="filtrarEventos('Cultura', this)">Cultura</button>
+            <button class="btn-filtro" onclick="filtrarEventos('Filme', this)">Filmes</button> 
         </div>
 
         <div th:if="${#lists.isEmpty(eventos)}" class="empty-state">
@@ -60,6 +61,8 @@
 
         </div>
     </main>
+
+    <script th:src="@{/js/filtros.js}"></script>
 
 </body>
 </html>
