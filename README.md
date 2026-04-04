@@ -25,7 +25,7 @@ Foram definidas as histórias principais focadas nas personas do Cidadão (que b
 * 📄 *Documento de Histórias:* [Acessar PDF](docs/Histórias_de_Usuário_CESAR-Squad16.pdf)
 ---
 
-###🤖 Entrega 01: MVP Aibox (Projeto Anterior)
+### 🤖 Entrega 01: MVP Aibox (Projeto Anterior)
 
 Nesta primeira entrega da frente de inovação, definimos as regras de negócio e o escopo para a criação de uma plataforma educacional baseada em IA para geração de questões e feedback em tempo real.
 
