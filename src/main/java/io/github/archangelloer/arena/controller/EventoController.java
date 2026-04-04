@@ -4,6 +4,7 @@ import io.github.archangelloer.arena.model.Evento;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -23,6 +24,20 @@ public class EventoController {
         model.addAttribute("eventos", minhaLista);
 
         return "index";
+    }
+
+    @GetMapping("/novo-evento")
+    public String exibirFormularioCadastro(Model model){
+        model.addAttribute("novoEvento", new Evento());
+
+        return "cadastro";
+    }
+
+    @PostMapping("/salvar-evento")
+    public String salvarEvento(Evento eventoRecebido){
+        System.out.println(eventoRecebido.getNome());
+
+        return "redirect:/";
     }
 
 }
