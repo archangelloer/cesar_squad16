@@ -161,3 +161,59 @@ main {
     padding: 60px 20px;
     color: #666;
 }
+
+
+/* cadastro de eventos */
+
+.form-container {
+    background-color: white;
+    border-radius: 12px;
+    padding: 40px;
+    max-width: 600px;
+    margin: 0 auto; /* Centraliza a caixa na tela */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    border: 1px solid #e0e0e0;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #1a237e;
+}
+
+.form-group input, .form-group select {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus, .form-group select:focus {
+    border-color: #1a237e;
+    outline: none;
+}
+
+.btn-salvar {
+    width: 100%;
+    background-color: #4caf50; /* Verde de sucesso */
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.btn-salvar:hover {
+    background-color: #45a049;
+}
