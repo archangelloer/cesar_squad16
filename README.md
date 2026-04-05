@@ -26,7 +26,7 @@ Nesta segunda etapa, desenvolvemos o MVP funcional do sistema utilizando o padr�
 O acompanhamento das tarefas, a divisão técnica do time e o backlog da sprint de desenvolvimento foram gerenciados via Trello.
 * 📋 **Acesso ao Quadro:** [Acessar Trello do Squad 16](https://trello.com/b/svXcgUeL/trellosquad16)
 
-![Visão Geral do Quadro Kanban - Trello](cole-aqui-o-caminho-da-imagem-do-trello.png)
+![Visão Geral do Quadro Kanban - Trello](docs/Foto Kanban.jpeg)
 
 #### 🎥 Screencast de Apresentação
 Vídeo demonstrativo mostrando o sistema rodando na prática. Apresentamos o fluxo completo: o cadastro de novos eventos pelo Administrador (passando pela validação de regras de negócio no Back-end e salvamento no banco H2) e a visualização dinâmica do catálogo pelo Cidadão.
