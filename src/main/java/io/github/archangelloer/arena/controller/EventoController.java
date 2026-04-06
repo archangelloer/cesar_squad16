@@ -36,14 +36,9 @@ public class EventoController {
 
     @PostMapping("/salvar-evento")
     public String salvarEvento(Evento eventoRecebido, Model model) {
-    
-        // Validação manual: verifica se a data do evento é antes de "agora"
         if (eventoRecebido.getData() != null && eventoRecebido.getData().isBefore(LocalDateTime.now())) {
-            // 1. Cria a variável 'erroData' com a mensagem
             model.addAttribute("erroData", "A data do evento não pode ser no passado!");
-            // 2. Devolve o objeto 'novoEvento' para o formulário não limpar os campos
             model.addAttribute("novoEvento", eventoRecebido); 
-            // 3. Recarrega a página de cadastro em vez de salvar
             return "cadastro";
         }
         repository.save(eventoRecebido);
