@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva Confirmada - Arena Pernambuco</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <header>
+        <h2>Arena Pernambuco</h2>
+        <nav>
+            <a href="/">Voltar ao Catálogo</a>
+        </nav>
+    </header>
+
+    <main class="sucesso-container">
+        <div class="ticket-card">
+            <h1 style="color: #4caf50;">✅ Reserva Confirmada!</h1>
+            <p>Seu ingresso para o evento foi garantido com sucesso.</p>
+            
+            <div class="ticket-info">
+                <h3>Evento:</h3>
+                <p class="evento-nome" th:text="${nomeEvento}">Nome do Evento</p>
+                
+                <h3>Código do Ingresso:</h3>
+                <p class="codigo-gerado" th:text="${codigo}">#00000000</p>
+            </div>
+
+            <p class="aviso">Apresente este código na bilheteria no dia do evento.</p>
+            <a href="/" class="btn-salvar" style="text-decoration: none; display: inline-block; text-align: center;">Ver mais eventos</a>
+        </div>
+    </main>
+
+</body>
+</html>

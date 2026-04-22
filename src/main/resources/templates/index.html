@@ -49,7 +49,7 @@
                     <a th:if="${evento.capacidadeDisponivel > 0}" 
                     th:href="@{/eventos/{id}/reservar(id=${evento.id})}" 
                     class="btn-reservar">
-                    Simular Reserva
+                    Reservar
                     </a>
 
                     <div th:unless="${evento.capacidadeDisponivel > 0}" class="btn-esgotado">

@@ -51,8 +51,8 @@ public class EventoController {
         return "redirect:/";
     }
     @GetMapping("/eventos/{id}/reservar")
-    public String realizarReserva(@PathVariable Long id) {
-    Evento evento = repository.findById(id).orElse(null);
+    public String realizarReserva(@PathVariable Long id, Model model) {
+        Evento evento = repository.findById(id).orElse(null);
 
         if (evento != null && evento.getCapacidadeDisponivel() > 0) {
             evento.reservarIngresso();
@@ -63,10 +63,14 @@ public class EventoController {
             novaReserva.setNome("Usuário Simulado");
             novaReserva.setCodigoTexto("ARENA-" + System.currentTimeMillis());
             novaReserva.setUtilizado(false);
-        
+            
             reservaRepository.save(novaReserva);    
+
+            model.addAttribute("nomeEvento", evento.getNome());
+            model.addAttribute("codigo", novaReserva.getCodigoTexto());
+
+            return "sucesso";
         }
         return "redirect:/"; 
     }
-
 }
