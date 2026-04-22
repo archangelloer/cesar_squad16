@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validação de Ingressos - Arena Pernambuco</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <header>
+        <h2>Arena Pernambuco (Admin)</h2>
+        <nav>
+            <a href="/">Voltar ao Catálogo</a>
+            <a th:href="@{/novo-evento}">Cadastrar Evento</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="page-title">Check-in de Ingressos</h1>
+        <p class="page-subtitle">Digite o código gerado no momento da reserva para liberar a catraca.</p>
+
+        <div class="form-container">
+            
+            <form th:action="@{/validar-ingresso}" method="POST">
+                
+                <div class="form-group">
+                    <label for="codigo">Código do Ingresso:</label>
+                    <input type="text" id="codigo" name="codigo" placeholder="Ex: ARENA-1715543..." required style="text-align: center; font-size: 1.2rem; font-weight: bold; letter-spacing: 1px;">
+                </div>
+
+                <p th:if="${mensagemSucesso}" th:text="${mensagemSucesso}" style="color: #4caf50; font-weight: bold; text-align: center; margin-bottom: 15px;"></p>
+                <p th:if="${mensagemErro}" th:text="${mensagemErro}" style="color: red; font-weight: bold; text-align: center; margin-bottom: 15px;"></p>
+
+                <button type="submit" class="btn-salvar">Validar Entrada</button>
+            </form>
+            
+        </div>
+    </main>
+
+</body>
+</html>

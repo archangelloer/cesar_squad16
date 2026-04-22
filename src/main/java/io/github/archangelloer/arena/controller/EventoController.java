@@ -73,4 +73,8 @@ public class EventoController {
         }
         return "redirect:/"; 
     }
+    @GetMapping("/validacao")
+    public String exibirTelaValidacao() {
+        return "validacao"; 
+    }
 }
