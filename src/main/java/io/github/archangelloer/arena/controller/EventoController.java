@@ -7,16 +7,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import io.github.archangelloer.arena.model.Evento;
+import io.github.archangelloer.arena.model.Reserva;
 import io.github.archangelloer.arena.repository.EventoRepository;
+import io.github.archangelloer.arena.repository.ReservaRepository;
 
 @Controller
 public class EventoController {
 
     @Autowired
     private EventoRepository repository;
+
+    @Autowired
+    private ReservaRepository reservaRepository;
 
     @GetMapping("/")
     public String listarEventos(Model model){
@@ -43,6 +49,24 @@ public class EventoController {
         }
         repository.save(eventoRecebido);
         return "redirect:/";
+    }
+    @GetMapping("/eventos/{id}/reservar")
+    public String realizarReserva(@PathVariable Long id) {
+    Evento evento = repository.findById(id).orElse(null);
+
+        if (evento != null && evento.getCapacidadeDisponivel() > 0) {
+            evento.reservarIngresso();
+            repository.save(evento);
+
+            Reserva novaReserva = new Reserva();
+            novaReserva.setEvento(evento);
+            novaReserva.setNome("Usuário Simulado");
+            novaReserva.setCodigoTexto("ARENA-" + System.currentTimeMillis());
+            novaReserva.setUtilizado(false);
+        
+            reservaRepository.save(novaReserva);    
+        }
+        return "redirect:/"; 
     }
 
 }

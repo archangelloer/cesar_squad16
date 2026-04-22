@@ -34,3 +34,8 @@ build/
 
 data/
 *.db
+
+/target/
+.settings/
+.classpath
+.project
