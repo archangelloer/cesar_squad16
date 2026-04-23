@@ -50,6 +50,7 @@ public class EventoController {
         repository.save(eventoRecebido);
         return "redirect:/";
     }
+
     @GetMapping("/eventos/{id}/reservar")
     public String realizarReserva(@PathVariable Long id, Model model) {
         Evento evento = repository.findById(id).orElse(null);
@@ -73,8 +74,30 @@ public class EventoController {
         }
         return "redirect:/"; 
     }
+    
     @GetMapping("/validacao")
     public String exibirTelaValidacao() {
         return "validacao"; 
+    }
+
+    @PostMapping("/validar-ingresso")
+    public String validarIngresso(String codigo, Model model){
+        Reserva reservaEncontrada = reservaRepository.findByCodigoTexto(codigo);
+
+        if (reservaEncontrada == null) {
+            model.addAttribute("mensagemErro", "❌ Ingresso não encontrado. Verifique o código.");
+            return "validacao"; 
+        }
+
+        if (reservaEncontrada.isUtilizado()) {
+            model.addAttribute("mensagemErro", "⚠️ Este ingresso já foi utilizado para check-in!");
+            return "validacao";
+        }
+
+        reservaEncontrada.setUtilizado(true); // Muda o status para não usar de novo
+        reservaRepository.save(reservaEncontrada);
+
+        model.addAttribute("mensagemSucesso", "✅ Ingresso validado! Catraca liberada para " + reservaEncontrada.getNome());
+        return "validacao";
     }
 }
