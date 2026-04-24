@@ -94,7 +94,7 @@ public class EventoController {
             return "validacao";
         }
 
-        reservaEncontrada.setUtilizado(true); // Muda o status para não usar de novo
+        reservaEncontrada.setUtilizado(true);
         reservaRepository.save(reservaEncontrada);
 
         model.addAttribute("mensagemSucesso", "✅ Ingresso validado! Catraca liberada para " + reservaEncontrada.getNome());
