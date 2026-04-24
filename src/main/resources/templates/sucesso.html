@@ -29,7 +29,11 @@
             </div>
 
             <p class="aviso">Apresente este código na bilheteria no dia do evento.</p>
-            <a href="/" class="btn-salvar" style="text-decoration: none; display: inline-block; text-align: center;">Ver mais eventos</a>
+            
+            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
+                <a href="/" class="btn-voltar" style="margin-top: 0;">Ver Catálogo</a>
+                <a th:href="@{/validacao}" class="btn-reservar" style="background-color: #1a237e; text-decoration: none;">Validar Agora</a>
+            </div>
         </div>
     </main>
 
