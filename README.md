@@ -33,6 +33,20 @@ O acompanhamento das tarefas, a divisão técnica do time e o backlog da sprint 
 Vídeo demonstrativo mostrando o sistema rodando na prática. Apresentamos o fluxo completo: o cadastro de novos eventos pelo Administrador (passando pela validação de regras de negócio no Back-end e salvamento no banco H2) e a visualização dinâmica do catálogo pelo Cidadão.
 * ▶️ **Acesso ao Vídeo:** [Assistir no YouTube](https://youtu.be/UC4oC0afoys?si=dSwLDU9J9lpUnc_2)
 
+### 🛠️ Entrega 03: Novas Funcionalidades e Bug Tracker
+Nesta etapa, implementamos as lógicas de **Reserva de Ingressos** (Cidadão) e o **Controle de Acesso/Check-in** (Administrador).
+
+#### 1. Screencast do Sistema (Novas Histórias)
+Abaixo está o link para o screencast do nosso sistema funcionando, com áudio e ênfase no teste prático das novas histórias (H3 e H4):
+* [▶️ Assistir ao Screencast da Entrega 03 no YouTube](https://youtu.be/bNyfRR6WtCA?si=e_mH0I5HD2Cyksfm)
+
+#### 2. Versionamento e Issue/Bug Tracker
+Nosso ambiente de versionamento segue ativo com commits frequentes no repositório. Para a nossa organização ágil, o Squad utiliza o Trello como gerenciador de tarefas principal e o **GitHub Issues** operando estritamente como nosso rastreador de bugs (Bug Tracker).
+
+Abaixo está o print atualizado da nossa aba de Issues no GitHub, demonstrando o registro, acompanhamento e resolução dos bugs encontrados durante o desenvolvimento das novas histórias:
+
+![Print do Issue Tracker Atualizado](docs/Github_Issues.png)
+
 ---
 
 ## 🤖 Projeto Anterior: MVP AIBox
