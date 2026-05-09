@@ -1,19 +1,24 @@
 package io.github.archangelloer.arena.controller;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import io.github.archangelloer.arena.model.Evento;
 import io.github.archangelloer.arena.model.Reserva;
 import io.github.archangelloer.arena.repository.EventoRepository;
 import io.github.archangelloer.arena.repository.ReservaRepository;
+import io.github.archangelloer.arena.model.RelatorioDTO;
 
 @Controller
 public class EventoController {
@@ -100,4 +105,42 @@ public class EventoController {
         model.addAttribute("mensagemSucesso", "✅ Ingresso validado! Catraca liberada para " + reservaEncontrada.getNome());
         return "validacao";
     }
+
+    @GetMapping("/relatorios")
+    public String exibirRelatorio(
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataInicio,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataFim,
+            Model model) {
+        
+        List<Evento> eventosFiltrados;
+
+        if (dataInicio != null && dataFim != null) {
+            LocalDateTime inicio = dataInicio.atStartOfDay(); 
+            LocalDateTime fim = dataFim.atTime(23, 59, 59);
+            
+            eventosFiltrados = repository.findByDataBetween(inicio, fim);
+        } else {
+            eventosFiltrados = repository.findAll();
+        }
+
+        List<RelatorioDTO> dadosRelatorio = new ArrayList<>();
+
+        for (Evento evento : eventosFiltrados) {
+            long totalReservas = reservaRepository.countByEvento(evento);
+            long totalCheckins = reservaRepository.countByEventoAndUtilizado(evento, true);
+            long noShow = totalReservas - totalCheckins; 
+            
+            double taxaComparecimento = 0.0;
+            if (totalReservas > 0) {
+                taxaComparecimento = ((double) totalCheckins / totalReservas) * 100;
+            }
+
+            dadosRelatorio.add(new RelatorioDTO(evento.getNome(), totalReservas, totalCheckins, noShow, taxaComparecimento));
+        }
+
+        model.addAttribute("relatorios", dadosRelatorio);
+
+        return "relatorio"; 
+    }
+
 }
