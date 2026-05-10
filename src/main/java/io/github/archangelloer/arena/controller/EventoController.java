@@ -135,28 +135,12 @@ public class EventoController {
                 taxaComparecimento = ((double) totalCheckins / totalReservas) * 100;
             }
 
-            dadosRelatorio.add(new RelatorioDTO(
-                evento.getNome(), 
-                evento.getCategoria(), 
-                totalReservas, 
-                totalCheckins, 
-                noShow, 
-                taxaComparecimento
-            ));
+            dadosRelatorio.add(new RelatorioDTO(evento.getNome(), evento.getCategoria(), totalReservas, totalCheckins, noShow, taxaComparecimento));
         }
 
         model.addAttribute("relatorios", dadosRelatorio);
-        return "relatorio";
+
+        return "relatorio"; 
     }
 
-    @GetMapping("/meus-ingressos")
-    public String listarMeusIngressos(Model model) {
-
-        List<Reserva> minhasReservas = reservaRepository.findAll();
-
-        model.addAttribute("reservas", minhasReservas);
-
-        return "meus-ingressos";
-    }
 }
-
