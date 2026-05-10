@@ -148,5 +148,15 @@ public class EventoController {
         model.addAttribute("relatorios", dadosRelatorio);
         return "relatorio";
     }
+
+    @GetMapping("/meus-ingressos")
+    public String listarMeusIngressos(Model model) {
+
+        List<Reserva> minhasReservas = reservaRepository.findAll();
+
+        model.addAttribute("reservas", minhasReservas);
+
+        return "meus-ingressos";
+    }
 }
 

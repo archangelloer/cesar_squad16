@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Ingressos - Arena Pernambuco</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <header>
+        <h2 style="cursor: pointer;" onclick="window.location.href='/'">Arena Pernambuco</h2>
+        <nav>
+            <a href="/">Voltar ao Catálogo</a>
+            <a th:href="@{/validacao}">Área Admin</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="page-title">Meus Ingressos</h1>
+        <p class="page-subtitle">Abaixo estão os seus ingressos reservados na Arena.</p>
+
+        <div th:if="${#lists.isEmpty(reservas)}" class="empty-state">
+            <h3>Você ainda não possui ingressos reservados.</h3>
+            <p>Navegue pelo catálogo e escolha seu próximo evento!</p>
+            <a href="/" class="btn-reservar" style="display: inline-block; margin-top: 20px; width: auto; padding: 10px 30px;">Ver Eventos</a>
+        </div>
+
+        <div th:unless="${#lists.isEmpty(reservas)}" class="event-grid">
+            
+            <div class="event-card" th:each="reserva : ${reservas}">
+                <div>
+                    <span class="event-categoria" th:text="${reserva.evento.categoria}">Categoria</span>
+                    
+                    <h3 class="event-title" th:text="${reserva.evento.nome}">Nome do Evento</h3>
+                    <p class="event-date">📅 <span th:text="${#temporals.format(reserva.evento.data, 'dd/MM/yyyy HH:mm')}">Data</span></p>
+                    
+                    <div style="background: #f9f9f9; padding: 10px; border-radius: 6px; border: 1px dashed #ccc; margin: 15px 0;">
+                        <small style="color: #666; display: block;">CÓDIGO:</small>
+                        <strong style="font-size: 1.1rem; letter-spacing: 1px;" th:text="${reserva.codigoTexto}">#000</strong>
+                    </div>
+                </div>
+
+                <div>
+                    <div th:if="${reserva.utilizado}" 
+                        style="text-align: center; color: #666; font-weight: bold; padding: 10px; background: #eee; border-radius: 6px;">
+                        ✓ UTILIZADO
+                    </div>
+                    
+                    <div th:unless="${reserva.utilizado}" 
+                        style="text-align: center; color: #2e7d32; font-weight: bold; padding: 10px; background: #e8f5e9; border-radius: 6px;">
+                        ● ATIVO / DISPONÍVEL
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>
