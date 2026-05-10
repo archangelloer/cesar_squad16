@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatórios de Ocupação - Arena Pernambuco</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <header>
+        <h2>Arena Pernambuco (Admin)</h2>
+        <nav>
+            <a href="/">Voltar ao Catálogo</a>
+            <a th:href="@{/novo-evento}">Cadastrar Evento</a>
+            <a th:href="@{/validacao}">Validar Ingressos</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="page-title">Relatório de Ocupação</h1>
+        <p class="page-subtitle">Análise de reservas e presença real nos eventos realizados.</p>
+
+        <div class="form-container" style="margin-bottom: 30px; max-width: 800px;">
+            <form th:action="@{/relatorios}" method="get" style="display: flex; gap: 15px; align-items: flex-end;">
+                <div class="form-group" style="margin-bottom: 0; flex: 1;">
+                    <label>Data Início:</label>
+                    <input type="date" name="dataInicio">
+                </div>
+                <div class="form-group" style="margin-bottom: 0; flex: 1;">
+                    <label>Data Fim:</label>
+                    <input type="date" name="dataFim">
+                </div>
+                <button type="submit" class="btn-salvar" style="width: auto; padding: 10px 20px; margin-top: 0;">Filtrar</button>
+            </form>
+        </div>
+
+        <div class="form-container" style="max-width: 1000px;">
+            <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                <thead>
+                    <tr style="border-bottom: 2px solid #1a237e; color: #1a237e;">
+                        <th style="padding: 12px;">Nome do Evento</th>
+                        <th style="padding: 12px;">Total Reservas</th>
+                        <th style="padding: 12px;">Check-ins</th>
+                        <th style="padding: 12px;">No-Show</th>
+                        <th style="padding: 12px;">Ocupação (%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="item : ${relatorios}" style="border-bottom: 1px solid #e0e0e0;">
+                        <td style="padding: 12px; font-weight: bold;" th:text="${item.nomeEvento}">Nome</td>
+                        <td style="padding: 12px;" th:text="${item.totalReservas}">0</td>
+                        <td style="padding: 12px;" th:text="${item.totalCheckins}">0</td>
+                        <td style="padding: 12px; color: #e53935;" th:text="${item.noShow}">0</td>
+                        <td style="padding: 12px;">
+                            <span th:text="${#numbers.formatDecimal(item.taxaComparecimento, 1, 2) + '%'}" 
+                                style="background: #e8f5e9; color: #2e7d32; padding: 4px 8px; border-radius: 4px; font-weight: bold;">
+                                0.00%
+                            </span>
+                        </td>
+                    </tr>
+                    
+                    <tr th:if="${#lists.isEmpty(relatorios)}">
+                        <td colspan="5" style="text-align: center; padding: 30px; color: #666;">
+                            Nenhum dado encontrado para o período selecionado.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+</body>
+</html>
