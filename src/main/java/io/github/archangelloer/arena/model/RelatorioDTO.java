@@ -3,13 +3,15 @@ package io.github.archangelloer.arena.model;
 public class RelatorioDTO {
     
     private String nomeEvento;
+    private String categoria;
     private long totalReservas;
     private long totalCheckins;
     private long noShow;
     private double taxaComparecimento;
 
-    public RelatorioDTO(String nome, long reservas, long checkins, long noShow, double taxa) {
+    public RelatorioDTO(String nome, String categoria, long reservas, long checkins, long noShow, double taxa) {
         this.nomeEvento = nome;
+        this.categoria = categoria;
         this.totalReservas = reservas;
         this.totalCheckins = checkins;
         this.noShow = noShow;
@@ -22,6 +24,14 @@ public class RelatorioDTO {
 
     public void setNomeEvento(String nomeEvento) {
         this.nomeEvento = nomeEvento;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 
     public long getTotalReservas() {

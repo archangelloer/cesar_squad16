@@ -135,12 +135,18 @@ public class EventoController {
                 taxaComparecimento = ((double) totalCheckins / totalReservas) * 100;
             }
 
-            dadosRelatorio.add(new RelatorioDTO(evento.getNome(), totalReservas, totalCheckins, noShow, taxaComparecimento));
+            dadosRelatorio.add(new RelatorioDTO(
+                evento.getNome(), 
+                evento.getCategoria(), 
+                totalReservas, 
+                totalCheckins, 
+                noShow, 
+                taxaComparecimento
+            ));
         }
 
         model.addAttribute("relatorios", dadosRelatorio);
 
         return "relatorio"; 
     }
-
 }
