@@ -146,7 +146,7 @@ public class EventoController {
         }
 
         model.addAttribute("relatorios", dadosRelatorio);
-
-        return "relatorio"; 
+        return "relatorio";
     }
 }
+
