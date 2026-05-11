@@ -143,4 +143,36 @@ public class EventoController {
         return "relatorio"; 
     }
 
+    @GetMapping("/meus-ingressos")
+    public String exibirMeusIngressos(Model model) {
+
+        List<Reserva> todasAsReservas = reservaRepository.findAll();
+        
+        model.addAttribute("reservas", todasAsReservas);
+        
+        return "meus-ingressos";
+    }
+
+    @PostMapping("/reservas/cancelar/{id}")
+    public String cancelarReserva(@PathVariable Long id) {
+        
+        var reservaOpt = reservaRepository.findById(id);
+
+        if (reservaOpt.isPresent()) {
+            Reserva reserva = reservaOpt.get();
+
+            if (reserva.getStatus().equals("Ativo")) {
+                
+                reserva.setStatus("Cancelado");
+
+                Evento evento = reserva.getEvento();
+                evento.devolverIngresso();
+
+                repository.save(evento);
+                reservaRepository.save(reserva);
+            }
+        }
+
+        return "redirect:/meus-ingressos"; 
+    }
 }

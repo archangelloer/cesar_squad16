@@ -19,6 +19,8 @@ public class Reserva {
 
     private boolean utilizado;
 
+    private String status = "Ativo";
+
     public Reserva() {}
 
     public Reserva(Evento evento, String nome, String codigoTexto) {
@@ -26,6 +28,7 @@ public class Reserva {
         this.nome = nome;
         this.codigoTexto = codigoTexto;
         this.utilizado = false; 
+        this.status = "Ativo";
     }
 
     public Long getId() {
@@ -61,5 +64,12 @@ public class Reserva {
     }
     public void setUtilizado(boolean utilizado) { 
         this.utilizado = utilizado; 
+    }
+
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

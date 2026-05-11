@@ -74,4 +74,8 @@ public class Evento {
             System.out.println("Ingressos Esgotados!");
         }
     }
+
+    public void devolverIngresso() {
+        this.capacidadeDisponivel = this.capacidadeDisponivel + 1;
+    }
 }
