@@ -86,7 +86,7 @@ public class EventoController {
     }
 
     @PostMapping("/validar-ingresso")
-    public String validarIngresso(String codigo, Model model){
+    public String validarIngresso(@RequestParam("codigo") String codigo, Model model){
         Reserva reservaEncontrada = reservaRepository.findByCodigoTexto(codigo);
 
         if (reservaEncontrada == null) {

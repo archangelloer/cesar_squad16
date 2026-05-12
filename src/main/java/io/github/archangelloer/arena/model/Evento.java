@@ -1,6 +1,7 @@
 package io.github.archangelloer.arena.model;
 
 import java.time.LocalDateTime;
+import org.springframework.format.annotation.DateTimeFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,7 +14,10 @@ public class Evento {
     private Long id;
 
     private String nome;
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime data;
+    
     private String categoria;
     private int capacidadeDisponivel;
 
