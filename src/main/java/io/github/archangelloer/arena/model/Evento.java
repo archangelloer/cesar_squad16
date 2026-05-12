@@ -14,8 +14,6 @@ public class Evento {
 
     private String nome;
     private LocalDateTime data;
-    private boolean utilizado = false; 
-    private String status = "Ativo";
     private String categoria;
     private int capacidadeDisponivel;
 
@@ -79,21 +77,5 @@ public class Evento {
 
     public void devolverIngresso() {
         this.capacidadeDisponivel = this.capacidadeDisponivel + 1;
-    }
-    
-    public boolean isUtilizado() {
-        return utilizado;
-    }
-
-    public void setUtilizado(boolean utilizado) {
-        this.utilizado = utilizado;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 }
