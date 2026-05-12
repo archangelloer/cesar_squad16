@@ -40,15 +40,21 @@
                         <strong style="font-size: 1.1rem; letter-spacing: 1px;" th:text="${reserva.codigoTexto}">#000</strong>
                     </div>
                     
-                    <form th:if="${reserva.status == 'Ativo' and !reserva.utilizado}" 
+                    <form th:if="${reserva.status == 'Ativo' and !reserva.utilizado and reserva.evento.data.isAfter(#temporals.createNow())}" 
                         th:action="@{/reservas/cancelar/{id}(id=${reserva.id})}" method="POST" style="margin-top: 15px; text-align: center;">
-                        
+    
                         <button type="submit" 
-                                style="background-color: #e53935; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; width: 100%; transition: 0.3s;"
-                                onclick="return confirm('CONFIRMAÇÃO DE SEGURANÇA: Você tem certeza que deseja cancelar esta reserva? Esta ação é irreversível e o ingresso será devolvido ao sistema.');">
+                            style="background-color: #e53935; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; width: 100%; transition: 0.3s;"
+                            onclick="return confirm('CONFIRMAÇÃO DE SEGURANÇA: Tens a certeza que desejas cancelar esta reserva? Esta ação é irreversível e o ingresso será devolvido ao sistema.');">
                             Cancelar Reserva
                         </button>
                     </form>
+
+                    <div th:if="${reserva.evento.data.isBefore(#temporals.createNow()) and !reserva.utilizado and reserva.status == 'Ativo'}"
+                        style="text-align: center; color: #666; font-size: 0.85rem; margin-top: 10px;">
+                        ⚠️ Evento encerrado: cancelamento indisponível.
+                    </div>
+
                 </div>
 
                 <div>
