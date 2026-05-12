@@ -30,20 +30,21 @@
                     <label>Data Fim:</label>
                     <input type="date" name="dataFim">
                 </div>
-                <button type="submit" class="btn-salvar" style="width: auto; padding: 10px 25px; margin-top: 0;">Filtrar</button>
+                <button type="submit" class="btn-reservar" style="width: auto; padding: 12px 30px;">Gerar</button>
             </form>
         </div>
 
         <div class="form-container" style="max-width: 1000px;">
             <table style="width: 100%; border-collapse: collapse; text-align: left;">
                 <thead>
-                    <tr style="border-bottom: 2px solid #1a237e; color: #1a237e;">
-                        <th style="padding: 12px;">Nome do Evento</th>
-                        <th style="padding: 12px;">Categoria</th>
-                        <th style="padding: 12px;">Total Reservas</th>
-                        <th style="padding: 12px;">Check-ins</th>
-                        <th style="padding: 12px;">No-Show</th>
-                        <th style="padding: 12px;">Ocupação (%)</th>
+                    <tr style="background-color: #f4f7f6; border-bottom: 2px solid #ccc;">
+                        <th style="padding: 12px; text-align: left;">Evento</th>
+                        <th style="padding: 12px; text-align: left;">Categoria</th>
+                        <th style="padding: 12px; text-align: left;">Lotação Máxima</th>
+                        <th style="padding: 12px; text-align: left;">Reservas</th>
+                        <th style="padding: 12px; text-align: left;">Check-ins</th>
+                        <th style="padding: 12px; text-align: left;">Faltas (No-Show)</th>
+                        <th style="padding: 12px; text-align: left;">Taxa de Presença</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,6 +53,7 @@
                         <td style="padding: 12px;">
                             <span class="event-categoria" style="margin-bottom: 0;" th:text="${item.categoria}">Categoria</span>
                         </td>
+                        <td style="padding: 12px;" th:text="${item.capacidadeTotal}">0</td>
                         <td style="padding: 12px;" th:text="${item.totalReservas}">0</td>
                         <td style="padding: 12px;" th:text="${item.totalCheckins}">0</td>
                         <td style="padding: 12px; color: #e53935; font-weight: bold;" th:text="${item.noShow}">0</td>
@@ -64,7 +66,7 @@
                     </tr>
                     
                     <tr th:if="${#lists.isEmpty(relatorios)}">
-                        <td colspan="6" style="text-align: center; padding: 30px; color: #666; font-style: italic;">
+                        <td colspan="7" style="text-align: center; padding: 30px; color: #666; font-style: italic;">
                             Nenhum dado encontrado para o período selecionado.
                         </td>
                     </tr>

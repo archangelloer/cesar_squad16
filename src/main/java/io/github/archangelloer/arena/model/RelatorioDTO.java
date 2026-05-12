@@ -4,14 +4,16 @@ public class RelatorioDTO {
     
     private String nomeEvento;
     private String categoria;
+    private int capacidadeTotal;
     private long totalReservas;
     private long totalCheckins;
     private long noShow;
     private double taxaComparecimento;
 
-    public RelatorioDTO(String nome, String categoria, long reservas, long checkins, long noShow, double taxa) {
+    public RelatorioDTO(String nome, String categoria, int capacidadeTotal, long reservas, long checkins, long noShow, double taxa) {
         this.nomeEvento = nome;
         this.categoria = categoria;
+        this.capacidadeTotal = capacidadeTotal;
         this.totalReservas = reservas;
         this.totalCheckins = checkins;
         this.noShow = noShow;
@@ -64,5 +66,9 @@ public class RelatorioDTO {
 
     public void setTaxaComparecimento(double taxaComparecimento) {
         this.taxaComparecimento = taxaComparecimento;
+    }
+
+    public int getCapacidadeTotal() { 
+        return capacidadeTotal; 
     }
 }

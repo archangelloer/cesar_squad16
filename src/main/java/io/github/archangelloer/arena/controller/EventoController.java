@@ -126,16 +126,30 @@ public class EventoController {
         List<RelatorioDTO> dadosRelatorio = new ArrayList<>();
 
         for (Evento evento : eventosFiltrados) {
-            long totalReservas = reservaRepository.countByEvento(evento);
-            long totalCheckins = reservaRepository.countByEventoAndUtilizado(evento, true);
-            long noShow = totalReservas - totalCheckins; 
-            
-            double taxaComparecimento = 0.0;
-            if (totalReservas > 0) {
-                taxaComparecimento = ((double) totalCheckins / totalReservas) * 100;
+            if (evento.getData().isAfter(LocalDateTime.now())) {
+                continue; 
             }
+            long reservasAtivas = reservaRepository.findAll().stream()
+                    .filter(r -> r.getEvento().getId().equals(evento.getId()) && r.getStatus().equals("Ativo"))
+                    .count();
 
-            dadosRelatorio.add(new RelatorioDTO(evento.getNome(), evento.getCategoria(), totalReservas, totalCheckins, noShow, taxaComparecimento));
+            long totalCheckins = reservaRepository.countByEventoAndUtilizado(evento, true);
+    
+            int lotacaoMaxima = evento.getCapacidadeDisponivel() + (int) reservasAtivas;
+    
+            long noShow = reservasAtivas - totalCheckins; 
+    
+            double taxaComparecimento = (reservasAtivas > 0) ? ((double) totalCheckins / reservasAtivas) * 100 : 0.0;
+
+            dadosRelatorio.add(new RelatorioDTO(
+                evento.getNome(), 
+                evento.getCategoria(), 
+                lotacaoMaxima, 
+                reservasAtivas, 
+                totalCheckins, 
+                noShow, 
+                taxaComparecimento
+            ));
         }
 
         model.addAttribute("relatorios", dadosRelatorio);
@@ -160,12 +174,18 @@ public class EventoController {
 
         if (reservaOpt.isPresent()) {
             Reserva reserva = reservaOpt.get();
+            Evento evento = reserva.getEvento();
+            
+            boolean eventoJaPassou = evento.getData().isBefore(LocalDateTime.now());
+            
+            boolean ingressoJaUtilizado = reserva.isUtilizado();
 
+            if (eventoJaPassou || ingressoJaUtilizado) {
+                return "redirect:/meus-ingressos?erro=bloqueado";
+            }
+            
             if (reserva.getStatus().equals("Ativo")) {
-                
                 reserva.setStatus("Cancelado");
-
-                Evento evento = reserva.getEvento();
                 evento.devolverIngresso();
 
                 repository.save(evento);
@@ -173,6 +193,6 @@ public class EventoController {
             }
         }
 
-        return "redirect:/meus-ingressos"; 
+        return "redirect:/meus-ingressos";
     }
 }

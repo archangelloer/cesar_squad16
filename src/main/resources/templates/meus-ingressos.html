@@ -39,15 +39,29 @@
                         <small style="color: #666; display: block;">CÓDIGO:</small>
                         <strong style="font-size: 1.1rem; letter-spacing: 1px;" th:text="${reserva.codigoTexto}">#000</strong>
                     </div>
+                    
+                    <form th:if="${reserva.status == 'Ativo' and !reserva.utilizado}" 
+                          th:action="@{/reservas/cancelar/{id}(id=${reserva.id})}" method="POST" style="margin-top: 15px; text-align: center;">
+                        <button type="submit" 
+                                style="background-color: #e53935; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; width: 100%;"
+                                onclick="return confirm('Tem certeza que deseja cancelar esta reserva?');">
+                            Cancelar Reserva
+                        </button>
+                    </form>
                 </div>
 
                 <div>
+                    <div th:if="${reserva.status == 'Cancelado'}" 
+                        style="text-align: center; color: #c62828; font-weight: bold; padding: 10px; background: #ffebee; border-radius: 6px;">
+                        ❌ CANCELADO
+                    </div>
+
                     <div th:if="${reserva.utilizado}" 
                         style="text-align: center; color: #666; font-weight: bold; padding: 10px; background: #eee; border-radius: 6px;">
                         ✓ UTILIZADO
                     </div>
                     
-                    <div th:unless="${reserva.utilizado}" 
+                    <div th:if="${reserva.status == 'Ativo' and !reserva.utilizado}" 
                         style="text-align: center; color: #2e7d32; font-weight: bold; padding: 10px; background: #e8f5e9; border-radius: 6px;">
                         ● ATIVO / DISPONÍVEL
                     </div>
