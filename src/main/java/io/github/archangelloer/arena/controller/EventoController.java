@@ -160,9 +160,11 @@ public class EventoController {
     @GetMapping("/meus-ingressos")
     public String exibirMeusIngressos(Model model) {
 
-        List<Reserva> todasAsReservas = reservaRepository.findAll();
+        List<Reserva> reservasAtivas = reservaRepository.findAll().stream()
+                .filter(r -> !"Cancelado".equals(r.getStatus()))
+                .toList();
         
-        model.addAttribute("reservas", todasAsReservas);
+        model.addAttribute("reservas", reservasAtivas);
         
         return "meus-ingressos";
     }
