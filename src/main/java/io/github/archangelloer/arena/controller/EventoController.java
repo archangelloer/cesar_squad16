@@ -126,11 +126,11 @@ public class EventoController {
         List<RelatorioDTO> dadosRelatorio = new ArrayList<>();
 
         for (Evento evento : eventosFiltrados) {
-            if (evento.getData().isAfter(LocalDateTime.now())) {
-                continue; 
-            }
+            
             long reservasAtivas = reservaRepository.findAll().stream()
-                    .filter(r -> r.getEvento().getId().equals(evento.getId()) && r.getStatus().equals("Ativo"))
+                    .filter(r -> r.getEvento() != null 
+                              && r.getEvento().getId().equals(evento.getId()) 
+                              && !"Cancelado".equals(r.getStatus()))
                     .count();
 
             long totalCheckins = reservaRepository.countByEventoAndUtilizado(evento, true);
