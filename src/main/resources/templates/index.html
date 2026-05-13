@@ -55,6 +55,11 @@
                     Reservar
                     </a>
 
+                    <a th:href="@{/dashboard/{id}(id=${evento.id})}" 
+                    style="display: block; text-align: center; margin-top: 10px; color: #1565c0; font-weight: bold; text-decoration: none; font-size: 0.9rem;">
+                    📊 Ver Dashboard
+                    </a>
+
                     <div th:unless="${evento.capacidadeDisponivel > 0}" class="btn-esgotado">
                     Esgotado
                     </div>

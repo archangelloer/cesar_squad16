@@ -129,8 +129,8 @@ public class EventoController {
             
             long reservasAtivas = reservaRepository.findAll().stream()
                     .filter(r -> r.getEvento() != null 
-                              && r.getEvento().getId().equals(evento.getId()) 
-                              && !"Cancelado".equals(r.getStatus()))
+                            && r.getEvento().getId().equals(evento.getId()) 
+                            && !"Cancelado".equals(r.getStatus()))
                     .count();
 
             long totalCheckins = reservaRepository.countByEventoAndUtilizado(evento, true);
@@ -196,5 +196,36 @@ public class EventoController {
         }
 
         return "redirect:/meus-ingressos";
+    }
+
+    @GetMapping("/dashboard/{id}")
+    public String exibirDashboard(@PathVariable Long id, Model model) {
+        Evento evento = repository.findById(id).orElse(null);
+
+        if (evento == null) {
+            return "redirect:/";
+        }
+
+        boolean naoIniciado = evento.getData().isAfter(LocalDateTime.now());
+        model.addAttribute("naoIniciado", naoIniciado);
+        model.addAttribute("evento", evento);
+
+        if (!naoIniciado) {
+            long publicoPresente = reservaRepository.countByEventoAndUtilizado(evento, true);
+
+            long reservasAtivas = reservaRepository.findAll().stream()
+                    .filter(r -> r.getEvento().getId().equals(evento.getId()) && r.getStatus().equals("Ativo"))
+                    .count();
+            
+            long faltamEntrar = reservasAtivas - publicoPresente;
+            int lotacaoMaxima = evento.getCapacidadeDisponivel() + (int) reservasAtivas;
+            long lotacaoRestante = lotacaoMaxima - publicoPresente;
+
+            model.addAttribute("publicoPresente", publicoPresente);
+            model.addAttribute("faltamEntrar", faltamEntrar);
+            model.addAttribute("lotacaoRestante", lotacaoRestante);
+        }
+
+        return "dashboard";
     }
 }

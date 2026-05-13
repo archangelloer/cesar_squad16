@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Arena Pernambuco</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    
+    <meta th:if="${!naoIniciado}" http-equiv="refresh" content="5">
+</head>
+<body>
+    <header>
+        <h2>Arena Pernambuco (Admin)</h2>
+        <nav>
+            <a href="/">Voltar ao Catálogo</a>
+            <a th:href="@{/validacao}">Validar Ingressos</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="page-title">Monitoramento ao Vivo</h1>
+        <p class="page-subtitle" th:text="${evento.nome}">Nome do Evento</p>
+
+        <div th:if="${naoIniciado}" class="form-container" style="text-align: center; border-top: 8px solid #e53935;">
+            <h2 style="color: #e53935; margin-bottom: 10px;">⚠️ Monitoramento ao vivo indisponível</h2>
+            <p style="color: #666;">O evento ainda não foi iniciado. Os gráficos e contadores ficarão visíveis apenas na data e horário marcados.</p>
+        </div>
+
+        <div th:unless="${naoIniciado}">
+            <div style="display: flex; gap: 20px; justify-content: space-between; margin-bottom: 30px;">
+                
+                <div style="flex: 1; background: #e8f5e9; padding: 40px 20px; border-radius: 12px; text-align: center; border: 2px solid #4caf50;">
+                    <h3 style="color: #2e7d32; font-size: 1.1rem; text-transform: uppercase;">Público Presente</h3>
+                    <p style="font-size: 5rem; font-weight: 900; color: #1b5e20; margin: 10px 0;" th:text="${publicoPresente}">0</p>
+                    <small style="color: #666;">Check-ins validados</small>
+                </div>
+
+                <div style="flex: 1; background: #fff3e0; padding: 40px 20px; border-radius: 12px; text-align: center; border: 2px solid #ff9800;">
+                    <h3 style="color: #ef6c00; font-size: 1.1rem; text-transform: uppercase;">Faltam Entrar</h3>
+                    <p style="font-size: 5rem; font-weight: 900; color: #e65100; margin: 10px 0;" th:text="${faltamEntrar}">0</p>
+                    <small style="color: #666;">Reservas aguardando na porta</small>
+                </div>
+
+                <div style="flex: 1; background: #e3f2fd; padding: 40px 20px; border-radius: 12px; text-align: center; border: 2px solid #2196f3;">
+                    <h3 style="color: #1565c0; font-size: 1.1rem; text-transform: uppercase;">Lotação Restante</h3>
+                    <p style="font-size: 5rem; font-weight: 900; color: #0d47a1; margin: 10px 0;" th:text="${lotacaoRestante}">0</p>
+                    <small style="color: #666;">Vagas livres no espaço total</small>
+                </div>
+
+            </div>
+
+            <p style="text-align: center; color: #999; font-style: italic; font-size: 0.9rem;">
+                🔄 Este painel cruza dados das catracas em tempo real. Atualização a cada 5 segundos.
+            </p>
+        </div>
+    </main>
+</body>
+</html>
