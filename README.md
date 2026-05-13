@@ -47,6 +47,57 @@ Abaixo está o print atualizado da nossa aba de Issues no GitHub, demonstrando o
 
 ![Print do Issue Tracker Atualizado](docs/Github_Issues.png)
 
+### 📌 Entrega 04: Setup e Execução do Projeto
+
+Este guia contém as instruções necessárias para configurar, rodar e testar a aplicação **Arena** localmente.
+
+#### 🛠️ Pré-requisitos
+
+Antes de iniciar, certifique-se de ter instalado em sua máquina:
+
+* **Java JDK 17**: O projeto foi desenvolvido utilizando a versão 17 do Java.
+* **Git**: Para clonar o repositório.
+* **Editor de Código**: Recomendamos o **VS Code** com a extensão *Spring Boot Extension Pack*.
+
+#### 🚀 Como Rodar o Projeto
+
+Siga os passos abaixo no seu terminal:
+
+1.  **Clone o repositório:**
+    ```bash
+    git clone https://github.com/ArchangelLoer/CESAR_Squad16.git
+    ```
+
+2.  **Entre na pasta do projeto:**
+    ```bash
+    cd CESAR_Squad16
+    ```
+
+3.  **Execute a aplicação utilizando o Maven Wrapper:**
+    ```bash
+    ./mvnw spring-boot:run
+    ```
+    *Nota: No Windows (PowerShell), utilize `.\mvnw spring-boot:run`.*
+
+4.  **Aguarde a inicialização:**
+    O sistema estará pronto quando a mensagem `Started EventoApplication in X seconds` aparecer no console.
+
+#### 🌐 Acesso ao Sistema e Banco de Dados
+
+Com a aplicação rodando, você pode acessar:
+
+* **Aplicação (Front-end):** [http://localhost:8080](http://localhost:8080)
+* **Console do Banco de Dados (H2):** [http://localhost:8080/h2-console](http://localhost:8080/h2-console)
+
+#### 🔑 Credenciais do Banco de Dados (H2)
+Para conectar ao banco de dados no console, utilize as configurações abaixo:
+
+* **Saved Settings:** `Generic H2 (Embedded)`
+* **Driver Class:** `org.h2.Driver`
+* **JDBC URL:** `jdbc:h2:file:./data/banco-arena`
+* **User Name:** `sa`
+* **Password:** *(deixe em branco)*
+
 ---
 
 ## 🤖 Projeto Anterior: MVP AIBox
