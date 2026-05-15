@@ -49,20 +49,26 @@
                 </div>
 
                 <div>
-                    <a th:if="${evento.capacidadeDisponivel > 0}" 
-                    th:href="@{/eventos/{id}/reservar(id=${evento.id})}" 
-                    class="btn-reservar">
-                    Reservar
+                    <div th:if="${evento.data.isBefore(#temporals.createNow())}" 
+                        style="background-color: #9e9e9e; color: white; text-align: center; padding: 10px; border-radius: 6px; font-weight: bold; margin-bottom: 10px;">
+                        ⚠️ Inscrições Encerradas
+                    </div>
+
+                    <a th:if="${evento.data.isAfter(#temporals.createNow()) and evento.capacidadeDisponivel > 0}" 
+                        th:href="@{/eventos/{id}/reservar(id=${evento.id})}" 
+                        class="btn-reservar">
+                        Reservar
                     </a>
+
+                    <div th:if="${evento.data.isAfter(#temporals.createNow()) and evento.capacidadeDisponivel <= 0}" 
+                            class="btn-esgotado">
+                        Esgotado
+                    </div>
 
                     <a th:href="@{/dashboard/{id}(id=${evento.id})}" 
-                    style="display: block; text-align: center; margin-top: 10px; color: #1565c0; font-weight: bold; text-decoration: none; font-size: 0.9rem;">
-                    📊 Ver Dashboard
+                        style="display: block; text-align: center; margin-top: 10px; color: #1565c0; font-weight: bold; text-decoration: none; font-size: 0.9rem;">
+                        📊 Ver Dashboard
                     </a>
-
-                    <div th:unless="${evento.capacidadeDisponivel > 0}" class="btn-esgotado">
-                    Esgotado
-                    </div>
                 </div>
 
             </div>

@@ -52,7 +52,7 @@
 
                     <div th:if="${reserva.evento.data.isBefore(#temporals.createNow()) and !reserva.utilizado and reserva.status == 'Ativo'}"
                         style="text-align: center; color: #666; font-size: 0.85rem; margin-top: 10px;">
-                        ⚠️ Evento encerrado: cancelamento indisponível.
+                        ⚠️ Evento já iniciado: cancelamento indisponível.
                     </div>
 
                 </div>

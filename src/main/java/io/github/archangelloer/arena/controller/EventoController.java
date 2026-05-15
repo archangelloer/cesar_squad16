@@ -60,7 +60,7 @@ public class EventoController {
     public String realizarReserva(@PathVariable Long id, Model model) {
         Evento evento = repository.findById(id).orElse(null);
 
-        if (evento != null && evento.getCapacidadeDisponivel() > 0) {
+        if (evento != null && evento.getCapacidadeDisponivel() > 0 && evento.getData().isAfter(LocalDateTime.now())) {
             evento.reservarIngresso();
             repository.save(evento);
 
@@ -77,7 +77,7 @@ public class EventoController {
 
             return "sucesso";
         }
-        return "redirect:/"; 
+        return "redirect:/?erro=evento-indisponivel";
     }
     
     @GetMapping("/validacao")
@@ -92,6 +92,11 @@ public class EventoController {
         if (reservaEncontrada == null) {
             model.addAttribute("mensagemErro", "❌ Ingresso não encontrado. Verifique o código.");
             return "validacao"; 
+        }
+
+        if ("Cancelado".equals(reservaEncontrada.getStatus())) {
+            model.addAttribute("mensagemErro", "🚫 Este ingresso foi CANCELADO e não possui mais validade!");
+            return "validacao";
         }
 
         if (reservaEncontrada.isUtilizado()) {
