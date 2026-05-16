@@ -49,9 +49,24 @@ Abaixo está o print atualizado da nossa aba de Issues no GitHub, demonstrando o
 
 ### 📌 Entrega 04: Setup e Execução do Projeto
 
-Este guia contém as instruções necessárias para configurar, rodar e testar a aplicação **Arena** localmente.
+#### 🎥 Screencast da Aplicação
 
-#### 🛠️ Pré-requisitos
+Assista ao vídeo demonstrativo apresentando as principais funcionalidades do sistema, o fluxo de navegação e a resolução dos requisitos propostos:
+
+[👉 **Clique aqui para assistir ao Screencast**](https://youtu.be/lzO26F84zTI)
+
+#### 🐛 Bugs Encontrados e Resolvidos (GitHub Issues)
+
+Durante a fase de testes, atuamos na correção de bugs críticos envolvendo regras de negócio, persistência de dados e exibição no front-end. O registro completo de nossa atuação pode ser visto abaixo:
+
+<img width="843" height="728" alt="image" src="https://github.com/user-attachments/assets/7a59324c-65f4-47cc-a7ac-db09084e37e3" />
+
+*Você pode conferir os detalhes técnicos de cada correção acessando a aba [Issues do nosso repositório](https://github.com/ArchangelLoer/CESAR_Squad16/issues?q=is%3Aissue+is%3Aclosed).*
+
+#### ⚙️ Guia de Setup e Execução Local
+Para testar as funcionalidades desenvolvidas e verificar as correções aplicadas em sua própria máquina, siga as instruções detalhadas abaixo.
+
+##### 🛠️ Pré-requisitos
 
 Antes de iniciar, certifique-se de ter instalado em sua máquina:
 
@@ -59,7 +74,7 @@ Antes de iniciar, certifique-se de ter instalado em sua máquina:
 * **Git**: Para clonar o repositório.
 * **Editor de Código**: Recomendamos o **VS Code** com a extensão *Spring Boot Extension Pack*.
 
-#### 🚀 Como Rodar o Projeto
+##### 🚀 Como Rodar o Projeto
 
 Siga os passos abaixo no seu terminal:
 
@@ -82,14 +97,14 @@ Siga os passos abaixo no seu terminal:
 4.  **Aguarde a inicialização:**
     O sistema estará pronto quando a mensagem `Started EventoApplication in X seconds` aparecer no console.
 
-#### 🌐 Acesso ao Sistema e Banco de Dados
+##### 🌐 Acesso ao Sistema e Banco de Dados
 
 Com a aplicação rodando, você pode acessar:
 
 * **Aplicação (Front-end):** [http://localhost:8080](http://localhost:8080)
 * **Console do Banco de Dados (H2):** [http://localhost:8080/h2-console](http://localhost:8080/h2-console)
 
-#### 🔑 Credenciais do Banco de Dados (H2)
+##### 🔑 Credenciais do Banco de Dados (H2)
 Para conectar ao banco de dados no console, utilize as configurações abaixo:
 
 * **Saved Settings:** `Generic H2 (Embedded)`
